@@ -26,7 +26,7 @@ jobs:
               run: dotnet restore ./DisasterPredictionAPI/DisasterPredictionAPI.csproj
 
             - name: Build
-              run: dotnet restore ./DisasterPredictionAPI/DisasterPredictionAPI.csproj --configuration Release --no-restore
+              run: dotnet restore ./DisasterPredictionAPI/DisasterPredictionAPI.csproj --configuration Release
 
             # publish
             - name : Publish
