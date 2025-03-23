@@ -1,0 +1,75 @@
+{
+  "dependencies": {
+    "mssql2": {
+      "restored": true,
+      "restoreTime": "2025-03-22T22:27:31.4990751Z"
+    },
+    "mssql3": {
+      "restored": true,
+      "restoreTime": "2025-03-22T22:28:19.9345442Z"
+    },
+    "secrets2": {
+      "restored": true,
+      "restoreTime": "2025-03-22T22:30:28.7470437Z"
+    },
+    "redis1": {
+      "restored": true,
+      "restoreTime": "2025-03-22T22:29:45.8743213Z"
+    },
+    "mssql1": {
+      "restored": true,
+      "restoreTime": "2025-03-22T22:27:29.0464967Z"
+    },
+    "secrets1": {
+      "restored": true,
+      "restoreTime": "2025-03-22T22:28:25.3667828Z"
+    }
+  },
+  "parameters": {
+    "mssql3.subscriptionId": {
+      "Name": "mssql3.subscriptionId",
+      "Type": "subscription",
+      "Value": "8986bc70-fd64-423d-8887-48b10118d3e9"
+    },
+    "redis1.resourceGroupName": {
+      "Name": "redis1.resourceGroupName",
+      "Type": "resourceGroup",
+      "Value": "newphoto-cache"
+    },
+    "secrets2.subscriptionId": {
+      "Name": "secrets2.subscriptionId",
+      "Type": "subscription",
+      "Value": "8986bc70-fd64-423d-8887-48b10118d3e9"
+    },
+    "redis1.serviceConnectorResourceGroupName": {
+      "Name": "redis1.serviceConnectorResourceGroupName",
+      "Type": "resourceGroup",
+      "Value": "test"
+    },
+    "secrets2.serviceConnectorResourceGroupName": {
+      "Name": "secrets2.serviceConnectorResourceGroupName",
+      "Type": "resourceGroup",
+      "Value": "test"
+    },
+    "mssql3.resourceGroupName": {
+      "Name": "mssql3.resourceGroupName",
+      "Type": "resourceGroup",
+      "Value": "newphotoDevSQL"
+    },
+    "redis1.subscriptionId": {
+      "Name": "redis1.subscriptionId",
+      "Type": "subscription",
+      "Value": "8986bc70-fd64-423d-8887-48b10118d3e9"
+    },
+    "mssql3.serviceConnectorResourceGroupName": {
+      "Name": "mssql3.serviceConnectorResourceGroupName",
+      "Type": "resourceGroup",
+      "Value": "test"
+    },
+    "secrets2.resourceGroupName": {
+      "Name": "secrets2.resourceGroupName",
+      "Type": "resourceGroup",
+      "Value": "DisasterPredictionAPI"
+    }
+  }
+}

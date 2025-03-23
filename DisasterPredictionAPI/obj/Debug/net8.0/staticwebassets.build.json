@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "dfDyFGdTOlOvOztLBzaQvvmx/e+22wD1G8qGF39Z1tg=",
+  "Source": "DisasterPredictionAPI",
+  "BasePath": "_content/DisasterPredictionAPI",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}

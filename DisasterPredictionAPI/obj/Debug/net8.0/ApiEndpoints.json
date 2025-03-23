@@ -1,0 +1,64 @@
+[
+  {
+    "ContainingType": "DisasterPredictionAPI.Controllers.DisasterPredictionController",
+    "Method": "ConfigureAlertSetting",
+    "RelativePath": "api/alert-settings",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "_alert",
+        "Type": "DisasterPredictionAPI.Models.AlertSetting",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "DisasterPredictionAPI.Controllers.DisasterPredictionController",
+    "Method": "Alerts",
+    "RelativePath": "api/alerts",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "DisasterPredictionAPI.Controllers.DisasterPredictionController",
+    "Method": "AlertsSend",
+    "RelativePath": "api/alerts/send",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "DisasterPredictionAPI.Controllers.DisasterPredictionController",
+    "Method": "DisasterRisks",
+    "RelativePath": "api/disaster-risks",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "DisasterPredictionAPI.Controllers.DisasterPredictionController",
+    "Method": "AddRegion",
+    "RelativePath": "api/regions",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "regionDisaster",
+        "Type": "DisasterPredictionAPI.Models.RegionDisaster",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]

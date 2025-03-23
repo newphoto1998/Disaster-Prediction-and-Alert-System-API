@@ -1,0 +1,63 @@
+{
+  "dependencies": {
+    "redis1": {
+      "restored": true,
+      "restoreTime": "2025-03-22T21:24:42.660037Z"
+    },
+    "mssql1": {
+      "restored": true,
+      "restoreTime": "2025-03-22T21:23:20.676842Z"
+    },
+    "secrets1": {
+      "restored": true,
+      "restoreTime": "2025-03-22T21:25:26.4510322Z"
+    }
+  },
+  "parameters": {
+    "redis1.resourceGroupName": {
+      "Name": "redis1.resourceGroupName",
+      "Type": "resourceGroup",
+      "Value": "newphoto-cache"
+    },
+    "mssql1.subscriptionId": {
+      "Name": "mssql1.subscriptionId",
+      "Type": "subscription",
+      "Value": "8986bc70-fd64-423d-8887-48b10118d3e9"
+    },
+    "redis1.serviceConnectorResourceGroupName": {
+      "Name": "redis1.serviceConnectorResourceGroupName",
+      "Type": "resourceGroup",
+      "Value": "DemoPublishAPI"
+    },
+    "mssql1.serviceConnectorResourceGroupName": {
+      "Name": "mssql1.serviceConnectorResourceGroupName",
+      "Type": "resourceGroup",
+      "Value": "DemoPublishAPI"
+    },
+    "secrets1.resourceGroupName": {
+      "Name": "secrets1.resourceGroupName",
+      "Type": "resourceGroup",
+      "Value": "DisasterPredictionAPI"
+    },
+    "redis1.subscriptionId": {
+      "Name": "redis1.subscriptionId",
+      "Type": "subscription",
+      "Value": "8986bc70-fd64-423d-8887-48b10118d3e9"
+    },
+    "mssql1.resourceGroupName": {
+      "Name": "mssql1.resourceGroupName",
+      "Type": "resourceGroup",
+      "Value": "newphotoDevSQL"
+    },
+    "secrets1.serviceConnectorResourceGroupName": {
+      "Name": "secrets1.serviceConnectorResourceGroupName",
+      "Type": "resourceGroup",
+      "Value": "DemoPublishAPI"
+    },
+    "secrets1.subscriptionId": {
+      "Name": "secrets1.subscriptionId",
+      "Type": "subscription",
+      "Value": "8986bc70-fd64-423d-8887-48b10118d3e9"
+    }
+  }
+}

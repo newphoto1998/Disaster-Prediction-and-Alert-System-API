@@ -1,0 +1,165 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "DisasterPredictionAPI",
+    "version": "1.0"
+  },
+  "paths": {
+    "/api/regions": {
+      "post": {
+        "tags": [
+          "DisasterPrediction"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegionDisaster"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegionDisaster"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegionDisaster"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/alert-settings": {
+      "post": {
+        "tags": [
+          "DisasterPrediction"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AlertSetting"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AlertSetting"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/AlertSetting"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/disaster-risks": {
+      "get": {
+        "tags": [
+          "DisasterPrediction"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/alerts/send": {
+      "post": {
+        "tags": [
+          "DisasterPrediction"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/alerts": {
+      "get": {
+        "tags": [
+          "DisasterPrediction"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AlertSetting": {
+        "type": "object",
+        "properties": {
+          "regionId": {
+            "type": "string",
+            "nullable": true
+          },
+          "alertDisasterTypes": {
+            "type": "string",
+            "nullable": true
+          },
+          "alertThresholdScore": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "LocationCoordinatesModel": {
+        "type": "object",
+        "properties": {
+          "regionLatitude": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "regionLongitude": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "RegionDisaster": {
+        "type": "object",
+        "properties": {
+          "regionId": {
+            "type": "string",
+            "nullable": true
+          },
+          "locationCoordinates": {
+            "$ref": "#/components/schemas/LocationCoordinatesModel"
+          },
+          "disasterTypes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}
