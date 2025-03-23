@@ -222,7 +222,7 @@ namespace DisasterPredictionAPI.Controllers
                 jsonDisasterRiskData = JsonConvert.SerializeObject(disasterRisksClasses);
 
                 var options = new DistributedCacheEntryOptions();
-                options.SetAbsoluteExpiration(DateTimeOffset.Now.AddSeconds(60 * 15));
+                options.SetAbsoluteExpiration(DateTimeOffset.Now.AddSeconds(30));
                 _redisCache.SetString("jsondata", jsonDisasterRiskData, options);
 
 
@@ -262,11 +262,12 @@ namespace DisasterPredictionAPI.Controllers
 
 
                 }
-
+     
+                return Ok(new { status = "success", data = disasterRisksClasses.Select(i => new { i.RegionID, i.DisasterType, i.RiskScore, i.RiskLevel, i.AlertTriggred }) });
 
             }
-            
-
+            else
+            {
                 List<DisasterRisksClass> disasterRisksResult = JsonConvert.DeserializeObject<List<DisasterRisksClass>>(jsonDisasterRiskData);
                 List<DisasterRisksClass> AlertData = disasterRisksResult.Where(x => x.AlertTriggred == true).ToList();
 
@@ -284,13 +285,19 @@ namespace DisasterPredictionAPI.Controllers
                 }
                 else
                 {
-                    return BadRequest(new { status = "Error", message = "Failed external API calls." });                }
+                    return BadRequest(new { status = "Error", message = "Failed external API calls." });
                 }
-          
+            }
+
+
+        }
 
 
 
-        
+
+
+
+
 
 
 

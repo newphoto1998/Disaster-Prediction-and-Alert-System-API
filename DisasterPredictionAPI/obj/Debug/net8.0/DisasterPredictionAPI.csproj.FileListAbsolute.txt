@@ -185,3 +185,4 @@ D:\project\DisasterPredictionAPI\DisasterPredictionAPI\obj\Debug\net8.0\refint\D
 D:\project\DisasterPredictionAPI\DisasterPredictionAPI\obj\Debug\net8.0\DisasterPredictionAPI.pdb
 D:\project\DisasterPredictionAPI\DisasterPredictionAPI\obj\Debug\net8.0\DisasterPredictionAPI.genruntimeconfig.cache
 D:\project\DisasterPredictionAPI\DisasterPredictionAPI\obj\Debug\net8.0\ref\DisasterPredictionAPI.dll
+D:\project\DisasterPredictionAPI\DisasterPredictionAPI\obj\Debug\net8.0\DisasterPredictionAPI.sourcelink.json
