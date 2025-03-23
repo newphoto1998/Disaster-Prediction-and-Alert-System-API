@@ -8,8 +8,8 @@ on:
             - main
     workflow_dispatch:
     
-    env:
-        AZURE_WEBAPP_NAME: 'test-demo-project'
+env:
+     AZURE_WEBAPP_NAME: 'test-demo-project'
     
 
 jobs:
