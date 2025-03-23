@@ -50,8 +50,7 @@
               "RelativeToolTip": "DisasterPredictionAPI\\.github\\workflows\\deployapi.yml",
               "ViewState": "AgIAAAQAAAAAAAAAAADgvw0AAAAeAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003775|",
-              "WhenOpened": "2025-03-23T13:01:29.744Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-23T13:01:29.744Z"
             },
             {
               "$type": "Document",
@@ -61,7 +60,7 @@
               "RelativeDocumentMoniker": "DisasterPredictionAPI\\Services\\RiskCalculateService.cs",
               "ToolTip": "D:\\project\\DisasterPredictionAPI\\DisasterPredictionAPI\\Services\\RiskCalculateService.cs",
               "RelativeToolTip": "DisasterPredictionAPI\\Services\\RiskCalculateService.cs",
-              "ViewState": "AgIAADAAAAAAAAAAAAAowDUAAAANAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-23T12:08:13.899Z",
               "EditorCaption": ""
@@ -76,8 +75,7 @@
               "RelativeToolTip": "DisasterPredictionAPI\\Models\\DisasterRisksClass.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAqwA0AAAAlAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-23T11:39:42.997Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-23T11:39:42.997Z"
             },
             {
               "$type": "Document",
@@ -89,8 +87,7 @@
               "RelativeToolTip": "DisasterPredictionAPI\\Services\\LineSendMessageService.cs",
               "ViewState": "AgIAAAcAAAAAAAAAAIA3wCYAAAByAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-23T11:12:11.194Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-23T11:12:11.194Z"
             },
             {
               "$type": "Document",
@@ -102,8 +99,7 @@
               "RelativeToolTip": "DisasterPredictionAPI\\Controllers\\DisasterPredictionController.cs",
               "ViewState": "AgIAAJsAAAAAAAAAAAAAABkBAACuAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-22T15:26:32.108Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-22T15:26:32.108Z"
             },
             {
               "$type": "Document",
@@ -115,8 +111,7 @@
               "RelativeToolTip": "DisasterPredictionAPI\\Program.cs",
               "ViewState": "AgIAAEwAAAAAAAAAAAD4v1oAAAAlAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-22T15:03:04.185Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-22T15:03:04.185Z"
             }
           ]
         }
