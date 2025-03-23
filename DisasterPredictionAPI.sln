@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35828.75 d17.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DisasterPredictionAPI", "DisasterPredictionAPI\DisasterPredictionAPI.csproj", "{E6F3A69F-2F72-4214-A387-F4B55FBFA1EB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E6F3A69F-2F72-4214-A387-F4B55FBFA1EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E6F3A69F-2F72-4214-A387-F4B55FBFA1EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E6F3A69F-2F72-4214-A387-F4B55FBFA1EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E6F3A69F-2F72-4214-A387-F4B55FBFA1EB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {665A4C23-177F-4D42-B8F4-12EAF0A0179D}
+	EndGlobalSection
+EndGlobal
