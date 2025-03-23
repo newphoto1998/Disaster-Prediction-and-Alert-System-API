@@ -222,7 +222,7 @@ namespace DisasterPredictionAPI.Controllers
                 jsonDisasterRiskData = JsonConvert.SerializeObject(disasterRisksClasses);
 
                 var options = new DistributedCacheEntryOptions();
-                options.SetAbsoluteExpiration(DateTimeOffset.Now.AddSeconds(30));
+                options.SetAbsoluteExpiration(DateTimeOffset.Now.AddSeconds(60 * 15));
                 _redisCache.SetString("jsondata", jsonDisasterRiskData, options);
 
 
