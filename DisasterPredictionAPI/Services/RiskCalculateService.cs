@@ -40,21 +40,21 @@ namespace DisasterPredictionAPI.Services
         {
             string level = "";
             double? low = riskScore / 3.0;
-            double? mid = (2.0 / 3.0) * (double)riskScore;
+            //double? mid = (2.0 / 3.0) * (double)riskScore;
 
             if (Measurement == 0) {
                 level = disasterType == "flood" ? "ไม่สามารถวิเคราะห์ค่าได้ เนื่องจากไม่พบฝนในพื้นที่" : "ไม่สามารถวิเคราะห์ค่าได้ เนื่องจากไม่พบข้อมูลแผ่นดินไหวในระยะที่กำหนด";
             }
 
-            else if (Measurement >= 0 && Measurement < low)
+            else if (Measurement > 0 && Measurement < low)
             {
                 level = "Low";
             }
-            else if (Measurement >= low && Measurement < mid)
+            else if (Measurement >= low && Measurement < riskScore)
             {
                 level = "Medium";
             }
-            else if (Measurement >= mid || Measurement >= riskScore)
+            else if (Measurement >= riskScore)
             {
                 level = "High";
             }
