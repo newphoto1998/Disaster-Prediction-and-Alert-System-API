@@ -40,7 +40,6 @@ namespace DisasterPredictionAPI.Services
         {
             string level = "";
             double? low = riskScore / 3.0;
-            //double? mid = (2.0 / 3.0) * (double)riskScore;
 
             if (Measurement == 0) {
                 level = disasterType == "flood" ? "ไม่สามารถวิเคราะห์ค่าได้ เนื่องจากไม่พบฝนในพื้นที่" : "ไม่สามารถวิเคราะห์ค่าได้ เนื่องจากไม่พบข้อมูลแผ่นดินไหวในระยะที่กำหนด";
