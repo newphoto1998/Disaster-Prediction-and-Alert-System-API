@@ -49,6 +49,10 @@ API calls.
   - api/Disaster-risks
     
     ![image](https://github.com/user-attachments/assets/85bc78af-96b5-46f0-b5d9-db34e7886867) &nbsp; ![image](https://github.com/user-attachments/assets/a05bc398-84f6-4e69-9d17-e8e148c2ea8c)
+ 
+    ![image](https://github.com/user-attachments/assets/70adea8c-c86f-4ae5-8a82-cb7dfd0c7a55)
+
+
 
 
 
