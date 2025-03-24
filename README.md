@@ -31,22 +31,24 @@ API calls.
 
 # Web API Demo
   API Url : https://test-demo-project-befwhacvaugscvaw.southeastasia-01.azurewebsites.net/
-  - POST /api/regions: Allows users to add regions with specific location coordinates and types of disasters they want to monitor. 
-  - POST /api/alert-settings: Allows users to configure alert settings for each region, including thresholds for disaster risk scores. 
-  - GET /api/disaster-risks: Triggers the disaster risk assessment, fetching real-time environmental data for all regions and calculating risk scores. This endpoint should return risk levels for each region and indicate if any alerts should be sent. 
-  - POST /api/alerts/send: Sends an alert for regions identified as high-risk and stores the alert in the database. Integrate with a messaging API 
-  - GET /api/alerts: Returns a list of recent alerts for each region, stored in a database.
+  - **POST /api/regions** : Allows users to add regions with specific location coordinates and types of disasters they want to monitor. 
+  - **POST /api/alert-settings** : Allows users to configure alert settings for each region, including thresholds for disaster risk scores. 
+  - **GET /api/disaster-risks** : Triggers the disaster risk assessment, fetching real-time environmental data for all regions and calculating risk scores. This endpoint should return risk levels for each region and indicate if any alerts should be sent. 
+  - **POST /api/alerts/send** : Sends an alert for regions identified as high-risk and stores the alert in the database. Integrate with a messaging API 
+  - **GET /api/alerts** : Returns a list of recent alerts for each region, stored in a database.
 
   ## Example
-  - api/Regions
+  - **api/Regions**
     
     ![image](https://github.com/user-attachments/assets/9e245e39-83a2-43c9-b1f8-cd408f354361)
+    
 
-  - api/Alert-settings
+  - **api/Alert-settings**
     
     ![image](https://github.com/user-attachments/assets/76878810-a1ba-43cd-89da-8e9e17aa5419)
+    
 
-  - api/Disaster-risks
+  - **api/Disaster-risks**
     
     ![image](https://github.com/user-attachments/assets/85bc78af-96b5-46f0-b5d9-db34e7886867) &nbsp; ![image](https://github.com/user-attachments/assets/a05bc398-84f6-4e69-9d17-e8e148c2ea8c)
  
@@ -54,10 +56,7 @@ API calls.
 
 
 
-
-
-
-  - api/Alerts
+  - **api/Alerts**
     
     ![image](https://github.com/user-attachments/assets/fa0a8976-3c13-480d-b462-e749fc2d21bf)
 
