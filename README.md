@@ -61,11 +61,17 @@ API calls.
     ![image](https://github.com/user-attachments/assets/fa0a8976-3c13-480d-b462-e749fc2d21bf)
 
 
+    **Azure Key vaults**
+   ![image](https://github.com/user-attachments/assets/f90ab515-a8ff-417b-b2b7-817a809525c0)
+
+
+
+
 
 # API Ref
-- Weather API : https://openweathermap.org/api
-- EarthQuake API : https://earthquake.usgs.gov/fdsnws/event/1/
-- Send messages : https://developers.line.biz/en/docs/messaging-api/sending-messages/
+- **Weather API** : https://openweathermap.org/api
+- **EarthQuake API** : https://earthquake.usgs.gov/fdsnws/event/1/
+- **Send messages** : https://developers.line.biz/en/docs/messaging-api/sending-messages/
 
 
 ## Reference
