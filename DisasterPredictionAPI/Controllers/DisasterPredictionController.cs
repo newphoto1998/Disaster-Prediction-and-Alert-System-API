@@ -139,7 +139,7 @@ namespace DisasterPredictionAPI.Controllers
         }
 
 
-     
+
 
 
         [HttpGet]
@@ -149,8 +149,8 @@ namespace DisasterPredictionAPI.Controllers
 
 
 
-           string? keySecret = _secretKey.SECRET_KEY_LINE;
-           string? keyLineChanel = _secretKey.SECRET_KEY_LINE_CHANEL;
+            string? keySecret = _secretKey.SECRET_KEY_LINE;
+            string? keyLineChanel = _secretKey.SECRET_KEY_LINE_CHANEL;
 
             var jsonDisasterRiskData = await _redisCache.GetStringAsync("jsondata");
 
@@ -161,139 +161,165 @@ namespace DisasterPredictionAPI.Controllers
 
                 List<DisasterRisksClass> disasterRisksClasses = new List<DisasterRisksClass>();
 
-   
-                var Alerts = (from objAlert in efDEV.AlertSettings
-                              join objRegion in efDEV.Regions
-                              on new { region = objAlert.RegionId, type = objAlert.AlertDisasterTypes }
-                              equals new { region = objRegion.RegionId, type = objRegion.RegionDisasterTypes} into isJoin
-                              from newItem in isJoin.DefaultIfEmpty()
-                              select new { objAlert.RegionId, objAlert.AlertDisasterTypes,objAlert.AlertThresholdScore, newItem.RegionLatitude, newItem.RegionLongitude }).ToList();
-
-                foreach (var item in Alerts)
+                try
                 {
 
+                    var Alerts = (from objAlert in efDEV.AlertSettings
+                                  join objRegion in efDEV.Regions
+                                  on new { region = objAlert.RegionId, type = objAlert.AlertDisasterTypes }
+                                  equals new { region = objRegion.RegionId, type = objRegion.RegionDisasterTypes } into isJoin
+                                  from newItem in isJoin.DefaultIfEmpty()
+                                  select new { objAlert.RegionId, objAlert.AlertDisasterTypes, objAlert.AlertThresholdScore, newItem.RegionLatitude, newItem.RegionLongitude }).ToList();
 
-                    DisasterRisksClass disasterRisksClass = new DisasterRisksClass();
-
-                    string regionID = item.RegionId.Trim();
-                    string? disasterTypes = item.AlertDisasterTypes;
-                    decimal? latitude = item.RegionLatitude;
-                    decimal? longitude = item.RegionLongitude;
-
-                    disasterRisksClass.RegionID = regionID;
-                    disasterRisksClass.DisasterType = item.AlertDisasterTypes;
-                    disasterRisksClass.RiskScore = await srvCal.calScoreRisk(_secretKey.SECRET_KEY_WEATHER, item.AlertDisasterTypes, latitude, longitude);
-                    disasterRisksClass.RiskLevel = await srvCal.calLevelRisk(disasterRisksClass.RiskScore, item.AlertThresholdScore, disasterTypes);
-                    disasterRisksClass.AlertTriggred = disasterRisksClass.RiskLevel == "High" ? true : false;
-
-                    disasterRisksClass.Latitude = latitude;
-                    disasterRisksClass.Longitude = longitude;
-                    disasterRisksClass.timeStamp = DateTime.Now;
-
-                    disasterRisksClasses.Add(disasterRisksClass);
-
-
-                    if ((bool)disasterRisksClass.AlertTriggred)
+                    foreach (var item in Alerts)
                     {
-                        List<DisasterRisksClass> currentDtLoop = disasterRisksClasses.Where(x => x.AlertTriggred == true && x.RegionID == regionID && x.DisasterType == disasterTypes).ToList();
-                        LineMessageAPI lineMessageHeaderDtLoop = new LineMessageAPI();
-
-                        lineMessageHeaderDtLoop.to = keyLineChanel;
-                        lineMessageHeaderDtLoop.messages = await srvLineSendMessageService.LineMessageTextDetail(currentDtLoop);
-
-                        HttpResponseMessage responseMessagedtLoop = await srvLineSendMessageService.SendLineMessage(keySecret, lineMessageHeaderDtLoop);
-
-                        if (responseMessagedtLoop.IsSuccessStatusCode)
+                        try
                         {
+                            DisasterRisksClass disasterRisksClass = new DisasterRisksClass();
+
+                            string regionID = item.RegionId.Trim();
+                            string? disasterTypes = item.AlertDisasterTypes;
+                            decimal? latitude = item.RegionLatitude;
+                            decimal? longitude = item.RegionLongitude;
+
+                            disasterRisksClass.RegionID = regionID;
+                            disasterRisksClass.DisasterType = item.AlertDisasterTypes;
+                            disasterRisksClass.RiskScore = await srvCal.calScoreRisk(_secretKey.SECRET_KEY_WEATHER, item.AlertDisasterTypes, latitude, longitude);
+                            disasterRisksClass.RiskLevel = await srvCal.calLevelRisk(disasterRisksClass.RiskScore, item.AlertThresholdScore, disasterTypes);
+
+                            if (disasterRisksClass.RiskScore == -1) return NotFound(new { status = "error", message = "error fetching the data." });
+
+                            disasterRisksClass.AlertTriggred = disasterRisksClass.RiskLevel == "High" ? true : false;
+                            disasterRisksClass.Latitude = latitude;
+                            disasterRisksClass.Longitude = longitude;
+                            disasterRisksClass.timeStamp = DateTime.Now;
+
+                            disasterRisksClasses.Add(disasterRisksClass);
 
 
+                            if ((bool)disasterRisksClass.AlertTriggred)
+                            {
+                                List<DisasterRisksClass> currentDtLoop = disasterRisksClasses.Where(x => x.AlertTriggred == true && x.RegionID == regionID && x.DisasterType == disasterTypes).ToList();
+                                LineMessageAPI lineMessageHeaderDtLoop = new LineMessageAPI();
+
+                                lineMessageHeaderDtLoop.to = keyLineChanel;
+                                lineMessageHeaderDtLoop.messages = await srvLineSendMessageService.LineMessageTextDetail(currentDtLoop);
+
+                                HttpResponseMessage responseMessagedtLoop = await srvLineSendMessageService.SendLineMessage(keySecret, lineMessageHeaderDtLoop);
+
+                                if (responseMessagedtLoop.IsSuccessStatusCode)
+                                {
+
+
+
+                                }
+                                else
+                                {
+                                    string errorMessage = await responseMessagedtLoop.Content.ReadAsStringAsync();
+                                    return BadRequest(new { status = responseMessagedtLoop.StatusCode, message = errorMessage });
+                                }
+                            }
 
                         }
-                        else
+                        catch (Exception ex)
                         {
-                            return BadRequest(new { status = "Error", message = "Failed external API calls." });
+                            return StatusCode(500, new { status = "error", message = ex.Message });
                         }
+
+
+
                     }
-                
+
+
+                    jsonDisasterRiskData = JsonConvert.SerializeObject(disasterRisksClasses);
+
+                    var options = new DistributedCacheEntryOptions();
+                    options.SetAbsoluteExpiration(DateTimeOffset.Now.AddSeconds(60 * 15));
+                    _redisCache.SetString("jsondata", jsonDisasterRiskData, options);
 
 
                 }
+                catch(Exception ex)
+                {
+                    return StatusCode(500, new { status = "error", message = ex.Message });
 
-                jsonDisasterRiskData = JsonConvert.SerializeObject(disasterRisksClasses);
+                }
 
-                var options = new DistributedCacheEntryOptions();
-                options.SetAbsoluteExpiration(DateTimeOffset.Now.AddSeconds(60 * 15));
-                _redisCache.SetString("jsondata", jsonDisasterRiskData, options);
 
 
 
                 // บันทึกลง log
                 if (disasterRisksClasses.Count > 0)
-                {
-
-                    List<DisasterLog> listPrev = efDEV.DisasterLogs.ToList();
-                    if (listPrev.Count > 0)
                     {
-                        listPrev.ForEach(a => a.Rev = 1);
-                        efDEV.SaveChanges();
+
+                        List<DisasterLog> listPrev = efDEV.DisasterLogs.ToList();
+                        if (listPrev.Count > 0)
+                        {
+                            listPrev.ForEach(a => a.Rev = 1);
+                            efDEV.SaveChanges();
+                        }
+
+                        foreach (var item in disasterRisksClasses)
+                        {
+                            DisasterLog log = new DisasterLog();
+
+
+                            log.CreateBy = "SYSTEM";
+                            log.CreateDate = DateTime.Now;
+                            log.LogDisasterType = item.DisasterType;
+                            log.LogRiskScore = (int?)item.RiskScore;
+                            log.LogRiskLevel = item.RiskLevel;
+                            log.LogRegion = item.RegionID;
+                            log.LogLatitude = (decimal?)item.Latitude;
+                            log.LogLongitude = (decimal?)item.Longitude;
+
+
+                            log.Rev = 999;
+
+                            efDEV.DisasterLogs.Add(log);
+                            efDEV.SaveChanges();
+
+                        }
+
+
                     }
 
-                    foreach (var item in disasterRisksClasses)
-                    {
-                        DisasterLog log = new DisasterLog();
-
-
-                        log.CreateBy = "SYSTEM";
-                        log.CreateDate = DateTime.Now;
-                        log.LogDisasterType = item.DisasterType;
-                        log.LogRiskScore = (int?)item.RiskScore;
-                        log.LogRiskLevel = item.RiskLevel;
-                        log.LogRegion = item.RegionID;
-                        log.LogLatitude = (decimal?)item.Latitude;
-                        log.LogLongitude = (decimal?)item.Longitude;
-
-
-                        log.Rev = 999;
-
-                        efDEV.DisasterLogs.Add(log);
-                        efDEV.SaveChanges();
-
-                    }
-
-
-                }
-     
                 return Ok(new { status = "success", data = disasterRisksClasses.Select(i => new { i.RegionID, i.DisasterType, i.RiskScore, i.RiskLevel, i.AlertTriggred }) });
 
             }
             else
             {
-                List<DisasterRisksClass> disasterRisksResult = JsonConvert.DeserializeObject<List<DisasterRisksClass>>(jsonDisasterRiskData);
-                List<DisasterRisksClass> AlertData = disasterRisksResult.Where(x => x.AlertTriggred == true).ToList();
-
-                LineMessageAPI lineMessageHeader = new LineMessageAPI();
-                lineMessageHeader.to = keyLineChanel;
-                lineMessageHeader.messages = await srvLineSendMessageService.LineMessageTextDetail(AlertData);
-
-                HttpResponseMessage responseMessage = await srvLineSendMessageService.SendLineMessage(keySecret, lineMessageHeader);
-
-                if (responseMessage.IsSuccessStatusCode)
+                try
                 {
+                    List<DisasterRisksClass> disasterRisksResult = JsonConvert.DeserializeObject<List<DisasterRisksClass>>(jsonDisasterRiskData);
+                    List<DisasterRisksClass> AlertData = disasterRisksResult.Where(x => x.AlertTriggred == true).ToList();
 
-                    return Ok(new { status = "sucess", data = disasterRisksResult.Select(i => new { i.RegionID, i.DisasterType, i.RiskScore, i.RiskLevel, i.AlertTriggred }) });
+                    LineMessageAPI lineMessageHeader = new LineMessageAPI();
+                    lineMessageHeader.to = keyLineChanel;
+                    lineMessageHeader.messages = await srvLineSendMessageService.LineMessageTextDetail(AlertData);
 
+                    HttpResponseMessage responseMessage = await srvLineSendMessageService.SendLineMessage(keySecret, lineMessageHeader);
+
+                    if (responseMessage.IsSuccessStatusCode)
+                    {
+
+                        return Ok(new { status = "sucess", data = disasterRisksResult.Select(i => new { i.RegionID, i.DisasterType, i.RiskScore, i.RiskLevel, i.AlertTriggred }) });
+
+                    }
+                    else
+                    {
+                        return BadRequest(new { status = "Error", message = "Failed external API calls." });
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    return BadRequest(new { status = "Error", message = "Failed external API calls." });
+                    return StatusCode(500, new { status = "error", message = ex.Message });
                 }
             }
 
 
+            
         }
-
-
-
 
 
 
@@ -363,7 +389,8 @@ namespace DisasterPredictionAPI.Controllers
                 }
                 else
                 {
-                    return BadRequest(new { status = "Error" });
+                    string errorMessage = await responseMessage.Content.ReadAsStringAsync();
+                    return BadRequest(new { status = responseMessage.StatusCode, message = errorMessage });
                 }
 
 
@@ -394,7 +421,8 @@ namespace DisasterPredictionAPI.Controllers
                 }
                 else
                 {
-                    return BadRequest(new { status = "Error" });
+                    string errorMessage = await responseMessage.Content.ReadAsStringAsync();
+                    return BadRequest(new { status = responseMessage.StatusCode, message = errorMessage });
                 }
             }
 
@@ -417,20 +445,6 @@ namespace DisasterPredictionAPI.Controllers
 
 
 
-        //[HttpGet("get-secret")]
-        //public async Task<IActionResult> GetSecret()
-        //{
-        //    try
-        //    {
-               
-
-        //        return Ok(new { SecretName = _test });
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return BadRequest(new { Message = "Error accessing Key Vault", Error = ex.Message });
-        //    }
-        //}
 
     }
 

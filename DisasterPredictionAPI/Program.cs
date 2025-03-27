@@ -27,7 +27,7 @@ var keyVaultUrl2 = "https://disasterpredictionsecret.vault.azure.net/";
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-if (builder.Environment.IsProduction())
+if (builder.Environment.IsDevelopment())
 {
     var keyVaultURL = builder.Configuration.GetSection("KeyVault:KeyVaultURL");
     var keyVaultClientID = builder.Configuration.GetSection("KeyVault:ClientId");

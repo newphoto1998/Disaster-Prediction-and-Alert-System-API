@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DisasterPredictionAPI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fe414b67af1e3042c76226f78e7c6c17f3f18298")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cfb39f22de14d3e2ca546835a346030af66fb4b2")]
 [assembly: System.Reflection.AssemblyProductAttribute("DisasterPredictionAPI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DisasterPredictionAPI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
